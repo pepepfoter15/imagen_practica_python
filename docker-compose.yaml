@@ -14,9 +14,11 @@ services:
       DJANGO_SUPERUSER_USERNAME: admin
       DJANGO_SUPERUSER_EMAIL: admin@admin.org
     ports:
-      - 8083:8006
+      - 8080:8000
     depends_on:
       - db_django
+    volumes:
+      - django_logs:/var/log/django
   db_django:
     container_name: mariadb_dj
     image: mariadb:latest
@@ -30,3 +32,4 @@ services:
       - mariadb_dj:/var/lib/mysql
 volumes:
     mariadb_dj:
+    django_logs:
